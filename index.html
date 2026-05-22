@@ -1,13 +1,272 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>Jenkins GitHub Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenkins 自动化部署平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b, #2563eb);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 0;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 90px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #38bdf8;
+        }
+
+        .badge {
+            padding: 10px 18px;
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 999px;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(12px);
+            font-size: 14px;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 58px;
+            line-height: 1.15;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            color: #38bdf8;
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 1.9;
+            color: #cbd5e1;
+            margin-bottom: 34px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 26px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: #38bdf8;
+            color: #020617;
+            box-shadow: 0 15px 35px rgba(56,189,248,0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 45px rgba(56,189,248,0.45);
+        }
+
+        .btn-secondary {
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.25);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .card {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 28px;
+            padding: 34px;
+            backdrop-filter: blur(18px);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.28);
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            background: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 18px #22c55e;
+        }
+
+        .info {
+            margin-top: 18px;
+            padding: 18px;
+            border-radius: 18px;
+            background: rgba(15,23,42,0.55);
+        }
+
+        .info small {
+            color: #94a3b8;
+        }
+
+        .info strong {
+            display: block;
+            margin-top: 6px;
+            font-size: 18px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            margin-top: 80px;
+        }
+
+        .feature {
+            padding: 26px;
+            border-radius: 24px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.14);
+        }
+
+        .feature h3 {
+            margin-bottom: 12px;
+            color: #7dd3fc;
+        }
+
+        .feature p {
+            color: #cbd5e1;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        .footer {
+            margin-top: 70px;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        @media (max-width: 850px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav {
+                margin-bottom: 50px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Jenkins 自动化部署成功</h1>
-    <p>源码来自 GitHub 仓库。</p>
-    <p>部署目标：Nginx</p>
-    <p>服务器：192.168.106.138</p>
+    <div class="container">
+        <div class="nav">
+            <div class="logo">Jenkins<span>Deploy</span></div>
+            <div class="badge">CI/CD 自动化部署实验</div>
+        </div>
+
+        <section class="hero">
+            <div>
+                <h1>Jenkins 自动化部署<br><span>成功运行</span></h1>
+                <p>
+                    当前页面由 GitHub 仓库托管源码，通过 Jenkins 自动拉取代码并部署到 Nginx。
+                    该实验展示了从代码提交到 Web 页面发布的基础 CI/CD 流程。
+                </p>
+                <div class="buttons">
+                    <a class="btn btn-primary" href="#">部署成功</a>
+                    <a class="btn btn-secondary" href="https://github.com/DCac1010/Jenkins">查看仓库</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="status">
+                    <div class="dot"></div>
+                    <h2>服务状态：运行中</h2>
+                </div>
+
+                <div class="info">
+                    <small>源码平台</small>
+                    <strong>GitHub</strong>
+                </div>
+
+                <div class="info">
+                    <small>构建工具</small>
+                    <strong>Jenkins Freestyle Job</strong>
+                </div>
+
+                <div class="info">
+                    <small>部署目标</small>
+                    <strong>Nginx Web Server</strong>
+                </div>
+
+                <div class="info">
+                    <small>服务器地址</small>
+                    <strong>192.168.106.138</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid">
+            <div class="feature">
+                <h3>代码托管</h3>
+                <p>HTML 页面代码存放在 GitHub 仓库中，便于版本管理和后续更新维护。</p>
+            </div>
+
+            <div class="feature">
+                <h3>自动构建</h3>
+                <p>Jenkins 执行 Shell 脚本，自动拉取最新代码并完成部署操作。</p>
+            </div>
+
+            <div class="feature">
+                <h3>Web 发布</h3>
+                <p>Nginx 作为 Web 服务，对外提供静态页面访问，实现最终展示效果。</p>
+            </div>
+        </section>
+
+        <div class="footer">
+            Powered by Jenkins · GitHub · Nginx · Docker
+        </div>
+    </div>
 </body>
 </html>
